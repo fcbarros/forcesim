@@ -1,6 +1,8 @@
 #pragma once
 
 #include "../engine/window.hpp"
+#include "../engine/pipeline.hpp"
+#include "../engine/backend/vulkan.hpp"
 
 #include<memory>
 
@@ -23,5 +25,7 @@ namespace app
         std::string _windowName;
 
         std::unique_ptr<engine::Window> _window;
+        std::unique_ptr<engine::Pipeline> _pipeline;
+        std::unique_ptr<engine::backend::Vulkan> _device;
     };
 }

@@ -18,6 +18,8 @@ namespace engine
 		Window(const Window&) = delete;
 		Window& operator=(const Window&) = delete;
 
+		void createWindowSurface(VkInstance instance, VkSurfaceKHR *surface);
+
 	private:
 		void initWindow();
 		void terminateWindow();

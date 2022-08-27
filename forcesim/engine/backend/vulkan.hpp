@@ -1,12 +1,12 @@
 #pragma once
 
-#include "window.hpp"
+#include "../window.hpp"
 
 // std lib headers
 #include <string>
 #include <vector>
 
-namespace engine
+namespace engine::backend
 {
   struct SwapChainSupportDetails
   {
@@ -24,7 +24,7 @@ namespace engine
     bool isComplete() { return graphicsFamilyHasValue && presentFamilyHasValue; }
   };
 
-  class MyEngineDevice
+  class Vulkan
   {
   public:
 #ifdef NDEBUG
@@ -33,14 +33,14 @@ namespace engine
     const bool enableValidationLayers = true;
 #endif
 
-    MyEngineDevice(MyEngineWindow &window);
-    ~MyEngineDevice();
+    Vulkan(engine::Window &window);
+    ~Vulkan();
 
     // Not copyable or movable
-    MyEngineDevice(const MyEngineDevice &) = delete;
-    void operator=(const MyEngineDevice &) = delete;
-    MyEngineDevice(MyEngineDevice &&) = delete;
-    MyEngineDevice &operator=(MyEngineDevice &&) = delete;
+    Vulkan(const Vulkan &) = delete;
+    void operator=(const Vulkan &) = delete;
+    Vulkan(Vulkan &&) = delete;
+    Vulkan &operator=(Vulkan &&) = delete;
 
     VkCommandPool getCommandPool() { return commandPool; }
     VkDevice device() { return device_; }
@@ -96,7 +96,7 @@ namespace engine
     VkInstance instance;
     VkDebugUtilsMessengerEXT debugMessenger;
     VkPhysicalDevice physicalDevice = VK_NULL_HANDLE;
-    MyEngineWindow &window;
+    engine::Window &window;
     VkCommandPool commandPool;
 
     VkDevice device_;
@@ -108,4 +108,4 @@ namespace engine
     const std::vector<const char *> deviceExtensions = {VK_KHR_SWAPCHAIN_EXTENSION_NAME};
   };
 
-} // namespace lve
+} // namespace engine::backend

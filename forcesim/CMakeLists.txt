@@ -4,7 +4,7 @@
 cmake_minimum_required (VERSION 3.15)
 
 # Add source to this project's executable.
-add_executable (forcesim "main.cpp"  "app/forcesim.cpp" "app/forcesim.hpp" "engine/window.cpp")
+add_executable (forcesim "main.cpp"  "app/forcesim.cpp" "app/forcesim.hpp" "engine/window.cpp" "engine/window.hpp" "engine/backend/vulkan.hpp" "engine/backend/vulkan.cpp" "engine/pipeline.hpp" "engine/pipeline.cpp")
 
 set_property(TARGET forcesim PROPERTY CXX_STANDARD 20)
 

@@ -1,5 +1,7 @@
 #include "window.hpp"
 
+#include <stdexcept>
+
 namespace engine
 {
     Window::Window(int width, int height, std::string windowName)
@@ -7,6 +9,7 @@ namespace engine
         , _height{ height }
         , _windowName{ windowName }
     {
+        initWindow();
     }
 
     Window::~Window()
@@ -16,7 +19,6 @@ namespace engine
 
     void Window::run()
     {
-        initWindow();
         while (!shouldClose())
         {
             glfwPollEvents();
@@ -42,5 +44,13 @@ namespace engine
     bool Window::shouldClose()
     {
         return glfwWindowShouldClose(_window);
+    }
+
+    void Window::createWindowSurface(VkInstance instance, VkSurfaceKHR *surface)
+    {
+        if (glfwCreateWindowSurface(instance, _window, nullptr, surface) != VK_SUCCESS)
+        {
+            throw std::runtime_error("Failed to create window surface");
+        }
     }
 }
